@@ -1,2 +1,2 @@
-# web
-The web app for Hyst.io.
+# hystio/web
+An upcoming social media platform combining the best of multiple.
