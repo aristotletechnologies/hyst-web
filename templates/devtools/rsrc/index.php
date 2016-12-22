@@ -65,7 +65,9 @@
 									<a href="<?php echo url_endpoint('devtools/rsrc/revision', ['rev' => $rsrc->active_revision_id, 'rsrc' => $rsrc->id]); ?>"><?php echo $rsrc->active_revision_id; ?></a>
 								</td>
 								<td>
-									<a href="/rsrc.php/<?php echo $rsrc->active_revision_id; ?>/<?php echo $rsrc->name; ?>">View</a>
+									<a href="<?php echo url_endpoint('devtools/rsrc/view', ['rev' => $rsrc->active_revision_id, 'rsrc' => $rsrc->id]); ?>">View</a> |
+									<a href="/rsrc.php/<?php echo $rsrc->active_revision_id . '/' . $rsrc->name; ?>">Source</a> |
+									<a href="<?php echo url_endpoint('devtools/rsrc/update', ['rev' => $rsrc->active_revision_id, 'rsrc' => $rsrc->id]); ?>">Edit</a>
 								</td>
 							</tr>
 						<?php endforeach; ?>
