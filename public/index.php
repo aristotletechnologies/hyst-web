@@ -23,11 +23,11 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 
 		<title>Hyst.io</title>
 
-		<link rel="stylesheet" href="/static/main.css">
+		<link rel="stylesheet" href="/static/app.css">
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container" id="hystio">
 			<header class="navbar">
 				<a class="navbar__logo" href="/">Hyst.io</a>
 
@@ -47,28 +47,7 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 
 			<div class="body">
 				<aside class="sidebar">
-					<div class="sidebar__block">
-						<h4 class="sidebar__block__title">Explore</h4>
-
-						<ul class="sidebar__list">
-							<?php foreach($topics as $topic): ?>
-								<li class="sidebar__list__item">
-									<a class="sidebar__list__item__link" href="/explore/<?php echo $topic->slug; ?>">
-										<span class="sidebar__list__item__emoji emojione emojione-<?php echo $topic->emoji; ?>">
-											&#x<?php echo $topic->emoji; ?>;
-										</span>
-
-										<div class="sidebar__list__item__text">
-											<span class="sidebar__list__item__heading"><?php echo $topic->name; ?></span>
-											<span class="sidebar__list__item__description"><?php echo $topic->description; ?></span>
-										</div>
-
-										<div class="clearfix"></div>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
+					<explore-topics></explore-topics>
 
 					<div class="sidebar__block">
 						<h4 class="sidebar__block__title">Trending</h4>
@@ -101,5 +80,33 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 				</main>
 			</div>
 		</div>
+
+		<template id="explore-topics-template">
+			<div class="sidebar__block">
+				<h4 class="sidebar__block__title">Explore</h4>
+
+				<ul :key="topic.slug" class="sidebar__list" v-for="(topic, topic_slug) in topics">
+					<li class="sidebar__list__item">
+						<a class="sidebar__list__item__link" v-bind:href="'explore/' + topic_slug">
+							<span class="sidebar__list__item__emoji emojione" v-bind:class="'emojione-' + topic.emoji">
+								&#x{{ topic.emoji }};
+							</span>
+
+							<div class="sidebar__list__item__text">
+								<span class="sidebar__list__item__heading">{{ topic.name }}</span>
+								<span class="sidebar__list__item__description">{{ topic.description }}</span>
+							</div>
+
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</template>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
+		<script src="/static/app.js"></script>
 	</body>
 </html>
