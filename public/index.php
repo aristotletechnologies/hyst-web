@@ -1,19 +1,3 @@
-<?php
-require $_SERVER['DOCUMENT_ROOT'] . '/../libraries/Database.php';
-
-db_open_connection(
-	'mysql:host=localhost;dbname=hystio;charset=utf8mb4',
-	'root',
-	'root'
-);
-
-$topics_query = db_query("SELECT * FROM topic ORDER BY name ASC");
-$topics       = db_rows($topics_query, 'slug');
-
-$trending_hashtags_query = db_query("SELECT * FROM hashtag ORDER BY post_count DESC, hashtag ASC");
-$trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -48,25 +32,7 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 			<div class="body">
 				<aside class="sidebar">
 					<explore-topics></explore-topics>
-
-					<div class="sidebar__block">
-						<h4 class="sidebar__block__title">Trending</h4>
-
-						<ul class="sidebar__list">
-							<?php foreach($trending_hashtags as $trending_hashtag): ?>
-								<li class="sidebar__list__item">
-									<a class="sidebar__list__item__link" href="/search?q=%23<?php echo $trending_hashtag->hashtag; ?>">
-										<div class="sidebar__list__item__text">
-											<span class="sidebar__list__item__heading">#<?php echo $trending_hashtag->hashtag; ?></span>
-											<span class="sidebar__list__item__description"><?php echo $trending_hashtag->post_count; ?> post<?php echo ($trending_hashtag->post_count == 1 ? '' : 's'); ?> tagged with this.</span>
-										</div>
-
-										<div class="clearfix"></div>
-									</a>
-								</li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
+					<trending-hashtags></trending-hashtags>
 				</aside>
 
 				<main class="content">
@@ -87,7 +53,7 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 
 				<ul :key="topic.slug" class="sidebar__list" v-for="(topic, topic_slug) in topics">
 					<li class="sidebar__list__item">
-						<a class="sidebar__list__item__link" v-bind:href="'explore/' + topic_slug">
+						<a class="sidebar__list__item__link" href="#" v-bind:href="'explore/' + topic_slug">
 							<span class="sidebar__list__item__emoji emojione" v-bind:class="'emojione-' + topic.emoji">
 								&#x{{ topic.emoji }};
 							</span>
@@ -104,8 +70,27 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 			</div>
 		</template>
 
+		<template id="trending-hashtags-template">
+			<div class="sidebar__block">
+				<h4 class="sidebar__block__title">Trending</h4>
+
+				<ul class="sidebar__list" v-for="(post_count, hashtag) in hashtags">
+					<li class="sidebar__list__item">
+						<a class="sidebar__list__item__link" href="#" v-bind:href="'search?q=%23' + hashtag">
+							<div class="sidebar__list__item__text">
+								<span class="sidebar__list__item__heading">#{{ hashtag }}</span>
+								<span class="sidebar__list__item__description">{{ post_count }} post<span v-show="post_count != 1">s</span> tagged with this.</span>
+							</div>
+
+							<div class="clearfix"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</template>
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.js"></script>
 		<script src="https://cdn.jsdelivr.net/vue.resource/1.0.3/vue-resource.min.js"></script>
 		<script src="/static/app.js"></script>
 	</body>
