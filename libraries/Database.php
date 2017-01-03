@@ -106,10 +106,11 @@ function db_row($query)
  * db_rows()
  * Returns all rows from a db_query() call.
  *
- * @param  object $query The result of the db_query() call.
- * @return array  $rows  The rows.
+ * @param  object $query       The result of the db_query() call.
+ * @param  string $primary_key The name of the field to use as the output key.
+ * @return array  $rows        The rows.
  */
-function db_rows($query)
+function db_rows($query, $primary_key = 'id')
 {
 	// Instantiate an empty array to store all the rows
 	$rows = [];
@@ -117,7 +118,7 @@ function db_rows($query)
 	// Fetch the rows
 	while($row = $query->fetch(PDO::FETCH_OBJ))
 	{
-		$rows[$row->id] = $row;
+		$rows[$row->{$primary_key}] = $row;
 	}
 
 	// Return the rows

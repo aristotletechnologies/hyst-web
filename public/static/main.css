@@ -1,0 +1,303 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/css/emojione.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/sprites/emojione.sprites.css";
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+input,
+select,
+textarea,
+button {
+	font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html,
+body,
+.container,
+.sidebar {
+	height: 100%;
+}
+
+.body {
+	height: calc(100% - 61px);
+}
+
+body {
+	margin: 0;
+}
+
+.button,
+.button:hover,
+.button:focus {
+	transition: 0.3s background;
+}
+
+.button {
+	background: #eaeaea;
+	border: 0;
+	border-radius: 4px;
+	font-weight: 300;
+	letter-spacing: 3px;
+	margin-right: 5px;
+	padding: 8px 14px;
+}
+
+.button:hover {
+	background: #dcdcdc;
+}
+
+.button:focus {
+	background: #ccc;
+	outline: none;
+}
+
+.button--is-primary {
+	background: #5d0a8b;
+	color: #fff;
+}
+
+.button--is-primary:hover {
+	background: #741ea4;
+}
+
+.button--is-primary:focus {
+	background: #853eac;
+}
+
+.menu__item {
+	border-bottom: 3px solid transparent;
+	color: #aaa;
+	display: inline-block;
+	font-size: 16px;
+	line-height: 54px;
+	padding: 0 16px;
+	text-decoration: none;
+}
+
+.menu__item:hover {
+	border-bottom: 3px solid #aaa;
+}
+
+.menu__item--is-current {
+	border-bottom-color: #000 !important;
+	color: #000;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.navbar {
+	background: #fff;
+	border-bottom: 1px solid #edeeee;
+	width: 100%;
+}
+
+.navbar__logo,
+.navbar__logo:hover,
+.navbar__logo:focus {
+	transition: 0.3s opacity;
+}
+
+.navbar__logo {
+	background: url(/static/logo.png);
+	background-size: 36px 36px;
+	display: inline-block;
+	float: left;
+	height: 36px;
+	margin: 10px 24px 10px 18px;
+	text-indent: -9999px;
+	width: 36px;
+}
+
+@media(min-width: 860px) {
+	.navbar__logo {
+		float: left;
+	}
+}
+
+.navbar__logo:hover {
+	opacity: 0.8;
+}
+
+.navbar__logo:focus {
+	opacity: 0.6;
+}
+
+.navbar .menu {
+	float: right;
+	padding: 0;
+}
+
+@media(min-width: 860px) {
+	.navbar .menu {
+		float: left;
+	}
+}
+
+.navbar .menu__item {
+	margin-right: 16px;
+	margin-top: 3px;
+	padding: 0;
+}
+
+.navbar__search {
+	display: none;
+	margin: 25px 24px 10px;
+}
+
+@media(min-width: 860px) {
+	.navbar__search {
+		display: block;
+		float: right;
+		margin: 10px;
+	}
+}
+
+.navbar__search__icon {
+	color: #c5c5c5;
+	display: block;
+	float: left;
+}
+
+@media(min-width: 860px) {
+	.navbar__search__icon {
+		left: 24px;
+		position: relative;
+		top: 14px;
+	}
+}
+
+.navbar__search__input,
+.navbar__search__input:focus {
+	transition: 0.3s border;
+}
+
+.navbar__search__input {
+	border: 1px solid #d5d5d5;
+	border-radius: 3px;
+	float: right;
+	height: 33px;
+	padding: 12px 8px 12px 30px;
+}
+
+@media(min-width: 860px) {
+	.navbar__search__input {
+		margin-top: 5px;
+		width: 210px;
+	}
+}
+
+.navbar__search__input:focus {
+	border-color: #5d0a8b;
+	outline: none;
+}
+
+.sidebar {
+	background: #fafafa;
+	border-right: 1px solid #edeeee;
+	display: none;
+	float: left;
+	width: 330px;
+}
+
+@media(min-width: 860px) {
+	.sidebar {
+		display: block;
+	}
+}
+
+.sidebar__block:not(:first-child) {
+	margin-top: 12px;
+}
+
+.sidebar__block__title {
+	border-bottom: 1px solid #edeeee;
+	color: #999;
+	font-size: 11px;
+	font-weight: normal;
+	margin: 0;
+	padding: 18px 24px 6px;
+	text-transform: uppercase;
+}
+
+.sidebar__list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sidebar__list__item,
+.sidebar__list__item:hover {
+	transition: 0.3s background;
+}
+
+.sidebar__list__item {
+	border-bottom: 1px solid #edeeee;
+	height: 74px;
+	padding: 18px 24px;
+}
+
+.sidebar__list__item:hover {
+	background: #efefef;
+}
+
+.sidebar__list__item__link {
+	text-decoration: none;
+}
+
+.sidebar__list__item__emoji {
+	-ms-transform: scale(0.5);
+	-webkit-transform: scale(0.5);
+	display: block;
+	float: left;
+	margin-left: -12px;
+	margin-top: -12px;
+	margin-right: -4px;
+	transform: scale(0.5);
+}
+
+.sidebar__list__item__text {
+	float: left;
+}
+
+.sidebar__list__item__heading {
+	color: #000;
+	display: block;
+	font-size: 17px;
+}
+
+.sidebar__list__item__description {
+	color: #999;
+	font-size: 13px;
+}
+
+@media(min-width: 860px) {
+	.content {
+		float: right;
+		width: calc(100% - 330px);
+	}
+}
+
+.post-form {
+	border-bottom: 1px solid #edeeee;
+	padding: 24px;
+}
+
+.post-form__textarea {
+	border: 0;
+	height: 150px;
+	resize: none;
+	width: 100%;
+}
+
+.post-form__textarea:focus {
+	outline: none;
+}
+
+.post-form__buttons {
+	margin: 12px 0 0;
+}

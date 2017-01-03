@@ -32,9 +32,9 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 				<a class="navbar__logo" href="/">Hyst.io</a>
 
 				<nav class="menu">
-					<a class="navbar__menu__item menu__item" href="/">Feed</a>
-					<a class="navbar__menu__item menu__item" href="/explore">Popular</a>
-					<a class="navbar__menu__item menu__item" href="/notifications">Notifications</a>
+					<a class="menu__item" href="/">Feed</a>
+					<a class="menu__item" href="/explore">Popular</a>
+					<a class="menu__item" href="/notifications">Notifications</a>
 				</nav>
 
 				<form action="/search" class="navbar__search" method="GET">
@@ -91,13 +91,10 @@ $trending_hashtags       = db_rows($trending_hashtags_query, 'hashtag');
 				</aside>
 
 				<main class="content">
-					<form action="/post/new" class="post-form" method="POST">
-						<textarea class="post-form__textarea" placeholder="What's going through your head?"></textarea>
-
-						<div class="post-form__buttons">
-							<button class="button button--is-primary post-form__submit" type="submit">Post</button>
-						</div>
-					</form>
+					<nav class="menu">
+						<a class="menu__item" href="/notifications/likes">Likes</a>
+						<a class="menu__item" href="/notifications/mentions">Mentions</a>
+					</nav>
 				</main>
 			</div>
 		</div>
